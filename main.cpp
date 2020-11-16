@@ -1,17 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "linkedList.h"
-#include "genQueue.h"
+#include "llQueue.h"
 using namespace std;
 
 int main(int argc, char **argv){
-  //availible windows
-  //linkedList <genQueue> regWindows = new linkedList <genQueue>;
+
   //windows with student
-  genQueue <int> *windowQueue = new genQueue <int>;
+  //genQueue <int> *windowQueue = new genQueue <int>;
   //students waiting for window
-  genQueue <int> *studentTimes = new genQueue <int>;
+  llQueue <int> *studentTimes = new llQueue <int>;
+  //genQueue <int> *studentTimes = new genQueue <int>;
+
+  //availible windows
+  //NaiveList<int> *regWindows = new NaiveList<int>;
 
 
 
