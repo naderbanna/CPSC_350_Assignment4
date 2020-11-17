@@ -65,18 +65,20 @@ int main(int argc, char **argv){
   cout << "Start Time: " << startTick << endl;
   cout << "Number of Students: " << numStudents << endl;
 
-  while(studentTimes->isEmpty() != true){
-    cout << studentTimes->peek() << endl;
-    studentTimes->remove();
-  }
+  // while(studentTimes->isEmpty() != true){
+  //   cout << studentTimes->peek() << endl;
+  //   studentTimes->remove();
+  // }
 
   int clockTick = 1;
-  int studentWait = 0;
+  float totalStudentWait = 0;
   int windowWait = 0;
   int windowIdle = 0;
+  float studentNumWait = 0;
 
-  //if(numElements = )
 
+  //change when using multiple windows
+  studentNumWait = studentTimes->getSize()-numWindows+1;
   while(clockTick != 0){
     //check available windows & insert students until all windows are full
     if(tempWin.isAvail == true){
@@ -84,20 +86,25 @@ int main(int argc, char **argv){
       studentTimes->remove();
       tempWin.time++;
       tempWin.isAvail = false;
+      cout << "added to window" << endl;
     }
+    //increase time if window is still in use
     if(tempWin.isAvail == false){
       tempWin.time++;
+      cout << "window increase time" << endl;
     }
-    if(tempWin.time == tempWin.student && tempWin.isAvail == false){
+    //remove student
+    if(tempWin.time == tempWin.student+1 && tempWin.isAvail == false){
       tempWin.student = 0;
       tempWin.time = 0;
       tempWin.isAvail = true;
+      cout << "student removed from window" << endl;
     }
 
 
     //total student wait time
     if(!studentTimes->isEmpty()){
-      ++studentWait;
+          ++totalStudentWait;
     }
 
     //add student to window queue is availible
@@ -113,6 +120,21 @@ int main(int argc, char **argv){
     //   ++windowIdle;
     // }
     ++clockTick;
+
+    if(studentTimes->isEmpty() && tempWin.student == 0){
+      cout << "clock tick 0" << endl;
+      clockTick = 0;
+    }
+
+
   }
+
+  cout << "student wait time: " << totalStudentWait << endl;
+  cout << "mean student wait time: " << totalStudentWait/studentNumWait << endl;
+  cout << "students waiting: " << studentNumWait << endl;
+  cout << "students waiting over 10 minutes: " << endl;
+  cout << "mean window idle time: " << windowIdle << endl;
+  cout << "longest window idle: " << endl;
+  cout << "windows idle for over 5 minutes: " << endl;
 
 }
