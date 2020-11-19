@@ -14,9 +14,10 @@ class NaiveList{
 
     void insertFront(temp d);
     void insertBack(temp d);
-    int removeFront();
+    temp removeFront();
     void printList();
     temp printFront();
+
 
     int find(temp value);
     int deletePos(int pos);
@@ -71,7 +72,7 @@ void NaiveList<temp>::insertBack(temp d){
 }
 
 template <class temp>
-int NaiveList<temp>::removeFront(){
+temp NaiveList<temp>::removeFront(){
   ListNode<temp> *node = front;
   if(front->next == NULL){
     back = NULL;
@@ -83,7 +84,7 @@ int NaiveList<temp>::removeFront(){
   front = front->next;
   --size;
   node->next = 0;
-  int t = node->data;
+  temp t = node->data;
 
   delete node;
   return t;
