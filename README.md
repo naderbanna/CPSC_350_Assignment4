@@ -5,6 +5,7 @@ banna@chapman.edu
 CPSC 231-02
 A4
 
+I'd like to use a late day for this assignment. Thank you!
 
 Files
 - main.cpp
